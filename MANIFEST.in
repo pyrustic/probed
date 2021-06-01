@@ -1,0 +1,3 @@
+recursive-include probed *
+global-exclude *.py[cod]
+include VERSION
