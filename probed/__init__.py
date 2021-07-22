@@ -8,6 +8,22 @@ class ProbedDict(dict):
         self.__changed = False
 
     @property
+    def probe(self):
+        return self.__probe
+
+    @probe.setter
+    def probe(self, val):
+        self.__probe = val
+
+    @property
+    def on_change(self):
+        return self.__on_change
+
+    @on_change.setter
+    def on_change(self, val):
+        self.__on_change = val
+
+    @property
     def changed(self):
         return self.__changed
 
@@ -123,6 +139,22 @@ class ProbedList(list):
         self.__probe = probe
         self.__on_change = on_change
         self.__changed = False
+
+    @property
+    def probe(self):
+        return self.__probe
+
+    @probe.setter
+    def probe(self, val):
+        self.__probe = val
+
+    @property
+    def on_change(self):
+        return self.__on_change
+
+    @on_change.setter
+    def on_change(self, val):
+        self.__on_change = val
 
     @property
     def changed(self):
@@ -276,6 +308,22 @@ class ProbedSet(set):
         self.__probe = probe
         self.__on_change = on_change
         self.__changed = False
+
+    @property
+    def probe(self):
+        return self.__probe
+
+    @probe.setter
+    def probe(self, val):
+        self.__probe = val
+
+    @property
+    def on_change(self):
+        return self.__on_change
+
+    @on_change.setter
+    def on_change(self, val):
+        self.__on_change = val
 
     @property
     def changed(self):
