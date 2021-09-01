@@ -2,6 +2,19 @@ class ProbedDict(dict):
 
     def __init__(self, items=None, probe=None,
                  on_change=None):
+        """
+        - items: default value of the collection
+        
+        - probe: callback called whenever the content of the collection
+        is going to change.
+        It should accept as argument an instance of probed.Info.
+        It should return the same instance (edited or not) of probed.Info
+        it got as argument, or return None to cancel the change operation.
+        
+        - on_change: callback called whenever the content of the collection changes.
+        It should accept as argument an instance of probed.Info.
+        
+        """
         super().__init__(items if items else {})
         self.__probe = probe
         self.__on_change = on_change
@@ -25,6 +38,10 @@ class ProbedDict(dict):
 
     @property
     def changed(self):
+        """
+        Boolean attribute to indicate whether the content of the
+        collection changed or not 
+        """
         return self.__changed
 
     @changed.setter
@@ -135,6 +152,19 @@ class ProbedList(list):
 
     def __init__(self, items=None, probe=None,
                  on_change=None):
+        """
+        - items: default value of the collection
+
+        - probe: callback called whenever the content of the collection
+        is going to change.
+        It should accept as argument an instance of probed.Info.
+        It should return the same instance (edited or not) of probed.Info
+        it got as argument, or return None to cancel the change operation.
+
+        - on_change: callback called whenever the content of the collection changes.
+        It should accept as argument an instance of probed.Info.
+
+        """
         super().__init__(items if items else ())
         self.__probe = probe
         self.__on_change = on_change
@@ -158,6 +188,10 @@ class ProbedList(list):
 
     @property
     def changed(self):
+        """
+        Boolean attribute to indicate whether the content of the
+        collection changed or not 
+        """
         return self.__changed
 
     @changed.setter
@@ -304,6 +338,19 @@ class ProbedSet(set):
 
     def __init__(self, items=None, probe=None,
                  on_change=None):
+        """
+        - items: default value of the collection
+
+        - probe: callback called whenever the content of the collection
+        is going to change.
+        It should accept as argument an instance of probed.Info.
+        It should return the same instance (edited or not) of probed.Info
+        it got as argument, or return None to cancel the change operation.
+
+        - on_change: callback called whenever the content of the collection changes.
+        It should accept as argument an instance of probed.Info.
+
+        """
         super().__init__(items if items else ())
         self.__probe = probe
         self.__on_change = on_change
@@ -327,6 +374,10 @@ class ProbedSet(set):
 
     @property
     def changed(self):
+        """
+        Boolean attribute to indicate whether the content of the
+        collection changed or not 
+        """
         return self.__changed
 
     @changed.setter
@@ -486,6 +537,42 @@ class ProbedSet(set):
 
 
 class Info:
+    """
+    This class contains data that describe a change event.
+    Three attributes are always available:
+
+    - collection: the collection object, i.e. an instance of probed.ProbedDict,
+    probed.ProbedList or probed.ProbedSet
+
+    - container: a string that indicates the type of container.
+    The containers are 'dict', 'list' and 'set'.
+
+    - operation: a string that indicates the type of operation.
+    The operations are same as the names of the methods (minus underscores)
+    of the collections.
+    Example, these are the operations for probed.ProbedDict:
+    'pop', 'setdefault', 'clear', 'popitem', 'update', 'delitem', 'setitem'
+
+    Then there are attributes that are available or not, depending of the operation
+    and the type of container.
+    Example: when you append a value to an instance of probed.ProbedList,
+    the operation name is "append", the container is "list", the collection is
+    the actual instance of probed.ProbedList, and then you have an extra attribute
+    called 'value'. This attribute contains the value that will be added to
+    the collection.
+    Note: the extra attributes mimic the name of the parameters of the operation method.
+
+    Illustration:
+
+    def on_change(info):
+        info.container # 'dict'
+        info.collection # the actual plist object
+        info.operation # 'append'
+        info.value # 'hello'
+
+    plist = probed.ProbedList(on_change=on_change)
+    plist.append("hello") # the name of the parameter of this operation is 'value'
+    """
     def __init__(self, collection, container, operation,
                  **kwargs):
         self._collection = collection

@@ -1,5 +1,11 @@
-## Probed
+# Probed collections
 
+This project is part of the [Pyrustic Ecosystem](https://pyrustic.github.io).
+
+<!-- Quick Links -->
+[Installation](#installation) | [Reference](https://github.com/pyrustic/probed/tree/master/docs/reference#readme)
+
+## Overview
 Sometimes you need to know when the content of a data collection has changed.
 
 `Probed` is a library that exposes three classes: `ProbedDict`, `ProbedList` and `ProbedSet`.
@@ -39,7 +45,7 @@ The insert operation changed the list collection
 ['hi', 'friend']
 ```
 
-Now, let's discover what the `probe` does and how to use it:
+Now, let's discover what the `probe` feature does and how to use it:
 
 ```python
 # script.py
@@ -47,6 +53,8 @@ from probed import ProbedSet
 
 
 def probe(info):
+    # this probe will lower strings added to the collection
+    # also, the object None isn't allowed in the collection
     if info.operation == "add":
         if info.item is None:
             info = None
@@ -69,16 +77,17 @@ In the last script, the `probe` was used to control the items added to the data 
 
 All operations that change the contents of the built-in containers are covered by `probed`.
 
+The library [Shared](https://github.com/pyrustic/shared) uses `Probed` !
+
+
+Read the [reference](https://github.com/pyrustic/probed/tree/master/docs/reference#readme) !
+## Installation
+
 `Probed` is available on PyPI:
 
 ```bash
 $ pip install probed
 ```
 
-[Shared](https://github.com/pyrustic/shared) uses `Probed` !
 
 
-A better documentation will come later. If you like it, bookmark the repository so you don't miss out updates.
-
-
-Join the [Discord](https://discord.gg/fSZ6nxzVd6) !
