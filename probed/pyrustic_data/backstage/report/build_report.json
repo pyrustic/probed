@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "app_version": "0.0.4",
+        "released": true,
+        "timestamp": 1630484805,
+        "wheel_asset": "probed-0.0.4-py3-none-any.whl"
+    }
+]

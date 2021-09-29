@@ -1,5 +1,5 @@
 
-Back to [Reference Overview](https://github.com/pyrustic/probed/blob/master/docs/reference/README.md)
+Back to [Reference Overview](https://github.com/pyrustic/probed/blob/master/docs/reference/README.md#readme)
 
 # probed.\_\_init\_\_
 
