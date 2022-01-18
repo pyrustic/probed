@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "build_timestamp": 1642539736,
+        "dist": "probed-0.0.8-py3-none-any.whl",
+        "release_timestamp": 1642539764,
+        "version": "0.0.8"
+    }
+]
