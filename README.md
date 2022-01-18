@@ -3,7 +3,7 @@
 This project is part of the [Pyrustic Ecosystem](https://pyrustic.github.io).
 
 <!-- Quick Links -->
-[Installation](#installation) | [Reference](https://github.com/pyrustic/probed/tree/master/docs/reference#readme)
+[Installation](#installation) | [Documentation](https://github.com/pyrustic/probed/tree/master/docs/modules#readme)
 
 ## Overview
 Sometimes you need to know when the content of a data collection has changed.
@@ -80,7 +80,7 @@ All operations that change the contents of the built-in containers are covered b
 The library [Shared](https://github.com/pyrustic/shared) uses `Probed` !
 
 
-Read the [reference](https://github.com/pyrustic/probed/tree/master/docs/reference#readme) !
+Read the [modules documentation](https://github.com/pyrustic/probed/tree/master/docs/modules#readme) !
 ## Installation
 
 `Probed` is available on PyPI:
