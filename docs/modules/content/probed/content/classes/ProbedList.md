@@ -2,21 +2,18 @@ Back to [All Modules](https://github.com/pyrustic/probed/blob/master/docs/module
 
 # Module Overview
 
-> **probed**
-> 
-> No description
->
-> **Classes:** &nbsp; [Info](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/Info.md#class-info) &nbsp; [ProbedDict](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedDict.md#class-probeddict) &nbsp; [ProbedList](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedList.md#class-probedlist) &nbsp; [ProbedSet](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedSet.md#class-probedset)
+**probed**
+ 
+No description
+
+> **Classes:** &nbsp; [Context](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/Context.md#class-context) &nbsp;&nbsp; [ProbedDict](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedDict.md#class-probeddict) &nbsp;&nbsp; [ProbedList](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedList.md#class-probedlist) &nbsp;&nbsp; [ProbedSet](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedSet.md#class-probedset)
 >
 > **Functions:** &nbsp; None
 >
 > **Constants:** &nbsp; None
 
 # Class ProbedList
-Built-in mutable sequence.
-
-If no argument is given, the constructor creates a new empty list.
-The argument must be an iterable if specified.
+Definition of the class to make probed lists
 
 ## Base Classes
 list
@@ -27,8 +24,7 @@ list
 ## Class Properties
 |Property|Type|Description|Inherited from|
 |---|---|---|---|
-|changed|getter|Boolean attribute to indicate whether the content of the
-collection changed or not ||
+|changed|getter|Boolean attribute to indicate whether the content of the collection changed or not ||
 |changed|setter|None||
 |on_change|getter|None||
 |on_change|setter|None||
@@ -38,10 +34,10 @@ collection changed or not ||
 
 
 # All Methods
-[\_probedlist\_\_get\_info](#_ProbedList__get_info) &nbsp; [\_probedlist\_\_run\_on\_change](#_ProbedList__run_on_change) &nbsp; [\_probedlist\_\_run\_probe](#_ProbedList__run_probe) &nbsp; [\_\_init\_\_](#__init__) &nbsp; [append](#append) &nbsp; [clear](#clear) &nbsp; [copy](#copy) &nbsp; [count](#count) &nbsp; [extend](#extend) &nbsp; [index](#index) &nbsp; [insert](#insert) &nbsp; [pop](#pop) &nbsp; [remove](#remove) &nbsp; [reverse](#reverse) &nbsp; [sort](#sort)
+[\_probedlist\_\_get\_context](#_ProbedList__get_context) &nbsp;&nbsp; [\_probedlist\_\_run\_on\_change](#_ProbedList__run_on_change) &nbsp;&nbsp; [\_probedlist\_\_run\_probe](#_ProbedList__run_probe) &nbsp;&nbsp; [\_\_init\_\_](#__init__) &nbsp;&nbsp; [append](#append) &nbsp;&nbsp; [clear](#clear) &nbsp;&nbsp; [copy](#copy) &nbsp;&nbsp; [count](#count) &nbsp;&nbsp; [extend](#extend) &nbsp;&nbsp; [index](#index) &nbsp;&nbsp; [insert](#insert) &nbsp;&nbsp; [pop](#pop) &nbsp;&nbsp; [remove](#remove) &nbsp;&nbsp; [reverse](#reverse) &nbsp;&nbsp; [sort](#sort)
 
-## \_ProbedList\_\_get\_info
-No description
+## \_ProbedList\_\_get\_context
+None
 
 
 
@@ -49,58 +45,64 @@ No description
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_ProbedList\_\_run\_on\_change
-No description
+None
 
 
 
-**Signature:** (self, info)
+**Signature:** (self, context)
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_ProbedList\_\_run\_probe
-No description
+None
 
 
 
-**Signature:** (self, info)
+**Signature:** (self, context)
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_\_init\_\_
-- items: default value of the collection
+Init.
 
-- probe: callback called whenever the content of the collection
-is going to change.
-It should accept as argument an instance of probed.Info.
-It should return the same instance (edited or not) of probed.Info
-it got as argument, or return None to cancel the change operation.
-
-- on_change: callback called whenever the content of the collection changes.
-It should accept as argument an instance of probed.Info.
 
 
 
 **Signature:** (self, items=None, probe=None, on\_change=None)
 
+|Parameter|Description|
+|---|---|
+|items|default value of the collection |
+|probe|callback called whenever the content of the collection is going to change. It should accept as argument an instance of probed.Context. It should return the same instance (edited or not) of probed.Context it got as argument, or return None to cancel the change operation. |
+|on\_change|callback called whenever the content of the collection changes. It should accept as argument an instance of probed.Context.|
 
 
-**Return Value:** None
+
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -114,7 +116,9 @@ Append object to the end of the list.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -128,7 +132,9 @@ Remove all items from list.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -142,7 +148,9 @@ Return a shallow copy of the list.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -156,7 +164,9 @@ Return number of occurrences of value.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -170,7 +180,9 @@ Extend list by appending elements from the iterable.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -186,7 +198,9 @@ Raises ValueError if the value is not present.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -200,7 +214,9 @@ Insert object before index.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -216,7 +232,9 @@ Raises IndexError if list is empty or index is out of range.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -232,7 +250,9 @@ Raises ValueError if the value is not present.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -246,7 +266,9 @@ Reverse *IN PLACE*.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -268,7 +290,9 @@ The reverse flag can be set to sort in descending order.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 

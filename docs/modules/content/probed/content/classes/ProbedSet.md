@@ -2,21 +2,18 @@ Back to [All Modules](https://github.com/pyrustic/probed/blob/master/docs/module
 
 # Module Overview
 
-> **probed**
-> 
-> No description
->
-> **Classes:** &nbsp; [Info](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/Info.md#class-info) &nbsp; [ProbedDict](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedDict.md#class-probeddict) &nbsp; [ProbedList](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedList.md#class-probedlist) &nbsp; [ProbedSet](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedSet.md#class-probedset)
+**probed**
+ 
+No description
+
+> **Classes:** &nbsp; [Context](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/Context.md#class-context) &nbsp;&nbsp; [ProbedDict](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedDict.md#class-probeddict) &nbsp;&nbsp; [ProbedList](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedList.md#class-probedlist) &nbsp;&nbsp; [ProbedSet](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedSet.md#class-probedset)
 >
 > **Functions:** &nbsp; None
 >
 > **Constants:** &nbsp; None
 
 # Class ProbedSet
-set() -> new empty set object
-set(iterable) -> new set object
-
-Build an unordered collection of unique elements.
+Definition of the class to make probed sets
 
 ## Base Classes
 set
@@ -27,8 +24,7 @@ set
 ## Class Properties
 |Property|Type|Description|Inherited from|
 |---|---|---|---|
-|changed|getter|Boolean attribute to indicate whether the content of the
-collection changed or not ||
+|changed|getter|Boolean attribute to indicate whether the content of the collection changed or not ||
 |changed|setter|None||
 |on_change|getter|None||
 |on_change|setter|None||
@@ -38,10 +34,10 @@ collection changed or not ||
 
 
 # All Methods
-[\_probedset\_\_get\_info](#_ProbedSet__get_info) &nbsp; [\_probedset\_\_run\_on\_change](#_ProbedSet__run_on_change) &nbsp; [\_probedset\_\_run\_probe](#_ProbedSet__run_probe) &nbsp; [\_\_init\_\_](#__init__) &nbsp; [add](#add) &nbsp; [clear](#clear) &nbsp; [difference\_update](#difference_update) &nbsp; [discard](#discard) &nbsp; [intersection\_update](#intersection_update) &nbsp; [pop](#pop) &nbsp; [remove](#remove) &nbsp; [symmetric\_difference\_update](#symmetric_difference_update) &nbsp; [update](#update)
+[\_probedset\_\_get\_context](#_ProbedSet__get_context) &nbsp;&nbsp; [\_probedset\_\_run\_on\_change](#_ProbedSet__run_on_change) &nbsp;&nbsp; [\_probedset\_\_run\_probe](#_ProbedSet__run_probe) &nbsp;&nbsp; [\_\_init\_\_](#__init__) &nbsp;&nbsp; [add](#add) &nbsp;&nbsp; [clear](#clear) &nbsp;&nbsp; [difference\_update](#difference_update) &nbsp;&nbsp; [discard](#discard) &nbsp;&nbsp; [intersection\_update](#intersection_update) &nbsp;&nbsp; [pop](#pop) &nbsp;&nbsp; [remove](#remove) &nbsp;&nbsp; [symmetric\_difference\_update](#symmetric_difference_update) &nbsp;&nbsp; [update](#update)
 
-## \_ProbedSet\_\_get\_info
-No description
+## \_ProbedSet\_\_get\_context
+None
 
 
 
@@ -49,58 +45,64 @@ No description
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_ProbedSet\_\_run\_on\_change
-No description
+None
 
 
 
-**Signature:** (self, info)
+**Signature:** (self, context)
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_ProbedSet\_\_run\_probe
-No description
+None
 
 
 
-**Signature:** (self, info)
+**Signature:** (self, context)
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_\_init\_\_
-- items: default value of the collection
+Init.
 
-- probe: callback called whenever the content of the collection
-is going to change.
-It should accept as argument an instance of probed.Info.
-It should return the same instance (edited or not) of probed.Info
-it got as argument, or return None to cancel the change operation.
-
-- on_change: callback called whenever the content of the collection changes.
-It should accept as argument an instance of probed.Info.
 
 
 
 **Signature:** (self, items=None, probe=None, on\_change=None)
 
+|Parameter|Description|
+|---|---|
+|items|default value of the collection |
+|probe|callback called whenever the content of the collection is going to change. It should accept as argument an instance of probed.Context. It should return the same instance (edited or not) of probed.Context it got as argument, or return None to cancel the change operation. |
+|on\_change|callback called whenever the content of the collection changes. It should accept as argument an instance of probed.Context.|
 
 
-**Return Value:** None
+
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -116,7 +118,9 @@ This has no effect if the element is already present.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -130,7 +134,9 @@ Remove all elements from this set.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -144,7 +150,9 @@ Remove all elements of another set from this set.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -160,7 +168,9 @@ If the element is not a member, do nothing.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -174,7 +184,9 @@ Update a set with the intersection of itself and another.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -189,7 +201,9 @@ Raises KeyError if the set is empty.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -205,7 +219,9 @@ If the element is not a member, raise a KeyError.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -219,7 +235,9 @@ Update a set with the symmetric difference of itself and another.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -233,7 +251,9 @@ Update a set with the union of itself and others.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 

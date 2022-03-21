@@ -2,17 +2,17 @@ Back to [All Modules](https://github.com/pyrustic/probed/blob/master/docs/module
 
 # Module Overview
 
-> **probed**
-> 
-> No description
->
-> **Classes:** &nbsp; [Info](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/Info.md#class-info) &nbsp; [ProbedDict](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedDict.md#class-probeddict) &nbsp; [ProbedList](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedList.md#class-probedlist) &nbsp; [ProbedSet](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedSet.md#class-probedset)
+**probed**
+ 
+No description
+
+> **Classes:** &nbsp; [Context](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/Context.md#class-context) &nbsp;&nbsp; [ProbedDict](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedDict.md#class-probeddict) &nbsp;&nbsp; [ProbedList](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedList.md#class-probedlist) &nbsp;&nbsp; [ProbedSet](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedSet.md#class-probedset)
 >
 > **Functions:** &nbsp; None
 >
 > **Constants:** &nbsp; None
 
-# Class Info
+# Class Context
 This class contains data that describe a change event.
 Three attributes are always available:
 
@@ -39,11 +39,11 @@ Note: the extra attributes mimic the name of the parameters of the operation met
 
 Illustration:
 
-def on_change(info):
-    info.container # 'dict'
-    info.collection # the actual plist object
-    info.operation # 'append'
-    info.value # 'hello'
+def on_change(context):
+    context.container # 'dict'
+    context.collection # the actual plist object
+    context.operation # 'append'
+    context.value # 'hello'
 
 plist = probed.ProbedList(on_change=on_change)
 plist.append("hello") # the name of the parameter of this operation is 'value'
@@ -67,15 +67,24 @@ object
 [\_\_init\_\_](#__init__)
 
 ## \_\_init\_\_
-Initialize self.  See help(type(self)) for accurate signature.
+Init
+
 
 
 
 **Signature:** (self, collection, container, operation, \*\*kwargs)
 
+|Parameter|Description|
+|---|---|
+|collection|the collection object|
+|container|str, the type of container ("dict", "set", "list")|
+|operation|str, the type of operation. Example: "pop", "remove", "append".|
 
 
-**Return Value:** None
+
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 

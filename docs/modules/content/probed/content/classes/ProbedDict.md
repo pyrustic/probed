@@ -2,26 +2,18 @@ Back to [All Modules](https://github.com/pyrustic/probed/blob/master/docs/module
 
 # Module Overview
 
-> **probed**
-> 
-> No description
->
-> **Classes:** &nbsp; [Info](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/Info.md#class-info) &nbsp; [ProbedDict](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedDict.md#class-probeddict) &nbsp; [ProbedList](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedList.md#class-probedlist) &nbsp; [ProbedSet](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedSet.md#class-probedset)
+**probed**
+ 
+No description
+
+> **Classes:** &nbsp; [Context](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/Context.md#class-context) &nbsp;&nbsp; [ProbedDict](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedDict.md#class-probeddict) &nbsp;&nbsp; [ProbedList](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedList.md#class-probedlist) &nbsp;&nbsp; [ProbedSet](https://github.com/pyrustic/probed/blob/master/docs/modules/content/probed/content/classes/ProbedSet.md#class-probedset)
 >
 > **Functions:** &nbsp; None
 >
 > **Constants:** &nbsp; None
 
 # Class ProbedDict
-dict() -> new empty dictionary
-dict(mapping) -> new dictionary initialized from a mapping object's
-    (key, value) pairs
-dict(iterable) -> new dictionary initialized as if via:
-    d = {}
-    for k, v in iterable:
-        d[k] = v
-dict(**kwargs) -> new dictionary initialized with the name=value pairs
-    in the keyword argument list.  For example:  dict(one=1, two=2)
+Definition of the class to make probed dicts
 
 ## Base Classes
 dict
@@ -32,8 +24,7 @@ dict
 ## Class Properties
 |Property|Type|Description|Inherited from|
 |---|---|---|---|
-|changed|getter|Boolean attribute to indicate whether the content of the
-collection changed or not ||
+|changed|getter|Boolean attribute to indicate whether the content of the collection changed or not ||
 |changed|setter|None||
 |on_change|getter|None||
 |on_change|setter|None||
@@ -43,10 +34,10 @@ collection changed or not ||
 
 
 # All Methods
-[\_probeddict\_\_get\_info](#_ProbedDict__get_info) &nbsp; [\_probeddict\_\_merge\_update\_other\_kwargs](#_ProbedDict__merge_update_other_kwargs) &nbsp; [\_probeddict\_\_run\_on\_change](#_ProbedDict__run_on_change) &nbsp; [\_probeddict\_\_run\_probe](#_ProbedDict__run_probe) &nbsp; [\_\_init\_\_](#__init__) &nbsp; [clear](#clear) &nbsp; [fromkeys](#fromkeys) &nbsp; [get](#get) &nbsp; [pop](#pop) &nbsp; [popitem](#popitem) &nbsp; [setdefault](#setdefault) &nbsp; [update](#update)
+[\_probeddict\_\_get\_context](#_ProbedDict__get_context) &nbsp;&nbsp; [\_probeddict\_\_merge\_update\_other\_kwargs](#_ProbedDict__merge_update_other_kwargs) &nbsp;&nbsp; [\_probeddict\_\_run\_on\_change](#_ProbedDict__run_on_change) &nbsp;&nbsp; [\_probeddict\_\_run\_probe](#_ProbedDict__run_probe) &nbsp;&nbsp; [\_\_init\_\_](#__init__) &nbsp;&nbsp; [clear](#clear) &nbsp;&nbsp; [fromkeys](#fromkeys) &nbsp;&nbsp; [get](#get) &nbsp;&nbsp; [pop](#pop) &nbsp;&nbsp; [popitem](#popitem) &nbsp;&nbsp; [setdefault](#setdefault) &nbsp;&nbsp; [update](#update)
 
-## \_ProbedDict\_\_get\_info
-No description
+## \_ProbedDict\_\_get\_context
+None
 
 
 
@@ -54,13 +45,15 @@ No description
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_ProbedDict\_\_merge\_update\_other\_kwargs
-No description
+None
 
 
 
@@ -68,58 +61,64 @@ No description
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_ProbedDict\_\_run\_on\_change
-No description
+None
 
 
 
-**Signature:** (self, info)
+**Signature:** (self, context)
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_ProbedDict\_\_run\_probe
-No description
+None
 
 
 
-**Signature:** (self, info)
+**Signature:** (self, context)
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
 
 ## \_\_init\_\_
-- items: default value of the collection
+Init.
 
-- probe: callback called whenever the content of the collection
-is going to change.
-It should accept as argument an instance of probed.Info.
-It should return the same instance (edited or not) of probed.Info
-it got as argument, or return None to cancel the change operation.
-
-- on_change: callback called whenever the content of the collection changes.
-It should accept as argument an instance of probed.Info.
 
 
 
 **Signature:** (self, items=None, probe=None, on\_change=None)
 
+|Parameter|Description|
+|---|---|
+|items|default value of the collection |
+|probe|callback called whenever the content of the collection is going to change. It should accept as argument an instance of probed.Context. It should return the same instance (edited or not) of probed.Context it got as argument, or return None to cancel the change operation. |
+|on\_change|callback called whenever the content of the collection changes. It should accept as argument an instance of probed.Context.|
 
 
-**Return Value:** None
+
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -133,7 +132,9 @@ D.clear() -> None.  Remove all items from D.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -147,7 +148,9 @@ Create a new dictionary with keys from iterable and values set to value.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -161,7 +164,9 @@ Return the value for key if key is in the dictionary, else default.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -176,7 +181,9 @@ If key is not found, d is returned if given, otherwise KeyError is raised
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -193,7 +200,9 @@ Raises KeyError if the dict is empty.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -209,7 +218,9 @@ Return the value for key if key is in the dictionary, else default.
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 
@@ -226,7 +237,9 @@ In either case, this is followed by: for k in F:  D[k] = F[k]
 
 
 
-**Return Value:** None
+
+
+**Return Value:** None.
 
 [Back to Top](#module-overview)
 

@@ -1,11 +1,10 @@
 # Probed collections
 
-This project is part of the [Pyrustic Ecosystem](https://pyrustic.github.io).
+This project is part of the [Pyrustic Open Ecosystem](https://pyrustic.github.io).
+> [Installation](#installation) . [Latest](https://github.com/pyrustic/probed/tags) . [Documentation](https://github.com/pyrustic/probed/tree/master/docs/modules#readme)
 
-<!-- Quick Links -->
-[Installation](#installation) | [Documentation](https://github.com/pyrustic/probed/tree/master/docs/modules#readme)
 
-## Overview
+# Overview
 Sometimes you need to know when the content of a data collection has changed.
 
 `Probed` is a library that exposes three classes: `ProbedDict`, `ProbedList` and `ProbedSet`.
@@ -22,9 +21,9 @@ Let's write a script to see `Probed` in action:
 from probed import ProbedList
 
 
-def on_change(info):
+def on_change(context):
     msg = "\nThe {} operation changed the {} collection\n{}"
-    print(msg.format(info.operation, info.container, info.collection))
+    print(msg.format(context.operation, context.container, context.collection))
 
 
 plist = ProbedList(on_change=on_change)
@@ -52,15 +51,15 @@ Now, let's discover what the `probe` feature does and how to use it:
 from probed import ProbedSet
 
 
-def probe(info):
+def probe(context):
     # this probe will lower strings added to the collection
     # also, the object None isn't allowed in the collection
-    if info.operation == "add":
-        if info.item is None:
-            info = None
+    if context.operation == "add":
+        if context.item is None:
+            context = None
         else:
-            info.item = info.item.lower()
-    return info
+            context.item = context.item.lower()
+    return context
 
 
 pset = ProbedSet(probe=probe)
@@ -77,17 +76,33 @@ In the last script, the `probe` was used to control the items added to the data 
 
 All operations that change the contents of the built-in containers are covered by `probed`.
 
-The library [Shared](https://github.com/pyrustic/shared) uses `Probed` !
+> **Read the [modules documentation](https://github.com/pyrustic/probed/tree/master/docs/modules#readme) !**
+
+# Related project
+The **Shared** data exchange and persistence library uses `Probed` to implement the `autosave` feature !
+
+> **Discover [Shared](https://github.com/pyrustic/shared) !**
 
 
-Read the [modules documentation](https://github.com/pyrustic/probed/tree/master/docs/modules#readme) !
-## Installation
 
-`Probed` is available on PyPI:
+# Installation
+**Probed** is **cross platform** and versions under **1.0.0** will be considered **Beta** at best. It is built on [Ubuntu](https://ubuntu.com/download/desktop) with [Python 3.8](https://www.python.org/downloads/) and should work on **Python 3.5** or **newer**.
+
+## For the first time
 
 ```bash
 $ pip install probed
 ```
 
+## Upgrade
+```bash
+$ pip install probed --upgrade --upgrade-strategy eager
 
+```
+
+<br>
+<br>
+<br>
+
+[Back to top](#readme)
 

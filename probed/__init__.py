@@ -1,18 +1,21 @@
 class ProbedDict(dict):
-
+    """Definition of the class to make probed dicts"""
     def __init__(self, items=None, probe=None,
                  on_change=None):
         """
+        Init.
+
+        [parameters]
         - items: default value of the collection
         
         - probe: callback called whenever the content of the collection
         is going to change.
-        It should accept as argument an instance of probed.Info.
-        It should return the same instance (edited or not) of probed.Info
+        It should accept as argument an instance of probed.Context.
+        It should return the same instance (edited or not) of probed.Context
         it got as argument, or return None to cancel the change operation.
         
         - on_change: callback called whenever the content of the collection changes.
-        It should accept as argument an instance of probed.Info.
+        It should accept as argument an instance of probed.Context.
         
         """
         super().__init__(items if items else {})
@@ -49,78 +52,78 @@ class ProbedDict(dict):
         self.__changed = val
 
     def clear(self):
-        info = self.__get_info("clear")
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("clear")
+        context = self.__run_probe(context)
+        if not context:
             return
         val = super().clear()
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def pop(self, key, default=None):
-        info = self.__get_info("pop", key=key,
+        context = self.__get_context("pop", key=key,
                                default=default)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().pop(info.key, info.default)
+        val = super().pop(context.key, context.default)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def popitem(self):
-        info = self.__get_info("popitem")
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("popitem")
+        context = self.__run_probe(context)
+        if not context:
             return
         val = super().popitem()
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def setdefault(self, key, default=None):
-        info = self.__get_info("setdefault", key=key,
+        context = self.__get_context("setdefault", key=key,
                                default=default)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().setdefault(info.key, info.default)
+        val = super().setdefault(context.key, context.default)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def update(self, other=None, **kwargs):
         other = self.__merge_update_other_kwargs(other,
                                                  **kwargs)
-        info = self.__get_info("update", other=other)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("update", other=other)
+        context = self.__run_probe(context)
+        if not context:
             return
         val = super().update(other)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __delitem__(self, key):
-        info = self.__get_info("delitem", key=key)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("delitem", key=key)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__delitem__(info.key)
+        val = super().__delitem__(context.key)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __setitem__(self, key, value):
-        info = self.__get_info("setitem", key=key,
+        context = self.__get_context("setitem", key=key,
                                value=value)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__setitem__(info.key, info.value)
+        val = super().__setitem__(context.key, context.value)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __merge_update_other_kwargs(self, other, **kwargs):
@@ -135,34 +138,37 @@ class ProbedDict(dict):
             other[key] = value
         return other
 
-    def __get_info(self, operation, **kwargs):
-        return Info(self, "dict", operation, **kwargs)
+    def __get_context(self, operation, **kwargs):
+        return Context(self, "dict", operation, **kwargs)
 
-    def __run_probe(self, info):
+    def __run_probe(self, context):
         if self.__probe:
-            info = self.__probe(info)
-        return info
+            context = self.__probe(context)
+        return context
 
-    def __run_on_change(self, info):
+    def __run_on_change(self, context):
         if self.__on_change:
-            self.__on_change(info)
+            self.__on_change(context)
 
 
 class ProbedList(list):
-
+    """Definition of the class to make probed lists"""
     def __init__(self, items=None, probe=None,
                  on_change=None):
         """
+        Init.
+
+        [parameters]
         - items: default value of the collection
 
         - probe: callback called whenever the content of the collection
         is going to change.
-        It should accept as argument an instance of probed.Info.
-        It should return the same instance (edited or not) of probed.Info
+        It should accept as argument an instance of probed.Context.
+        It should return the same instance (edited or not) of probed.Context
         it got as argument, or return None to cancel the change operation.
 
         - on_change: callback called whenever the content of the collection changes.
-        It should accept as argument an instance of probed.Info.
+        It should accept as argument an instance of probed.Context.
 
         """
         super().__init__(items if items else ())
@@ -199,156 +205,159 @@ class ProbedList(list):
         self.__changed = val
 
     def append(self, value):
-        info = self.__get_info("append", value=value)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("append", value=value)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().append(info.value)
+        val = super().append(context.value)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def clear(self):
-        info = self.__get_info("clear")
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("clear")
+        context = self.__run_probe(context)
+        if not context:
             return
         val = super().clear()
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def extend(self, value):
-        info = self.__get_info("extend", value=value)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("extend", value=value)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().extend(info.value)
+        val = super().extend(context.value)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def insert(self, index, value):
-        info = self.__get_info("insert", index=index,
+        context = self.__get_context("insert", index=index,
                                value=value)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().insert(info.index, info.value)
+        val = super().insert(context.index, context.value)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def pop(self, index=-1):
-        info = self.__get_info("pop", index=index)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("pop", index=index)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().pop(info.index)
+        val = super().pop(context.index)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def remove(self, value):
-        info = self.__get_info("remove", value=value)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("remove", value=value)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().remove(info.value)
+        val = super().remove(context.value)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def reverse(self):
-        info = self.__get_info("reverse")
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("reverse")
+        context = self.__run_probe(context)
+        if not context:
             return
         val = super().reverse()
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def sort(self, *, key=None, reverse=False):
-        info = self.__get_info("sort", key=key,
+        context = self.__get_context("sort", key=key,
                                reverse=reverse)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().sort(key=info.key, reverse=info.reverse)
+        val = super().sort(key=context.key, reverse=context.reverse)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __delitem__(self, index):
-        info = self.__get_info("delitem", index=index)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("delitem", index=index)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__delitem__(info.index)
+        val = super().__delitem__(context.index)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __iadd__(self, value):
-        info = self.__get_info("iadd", value=value)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("iadd", value=value)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__iadd__(info.value)
+        val = super().__iadd__(context.value)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __imul__(self, value):
-        info = self.__get_info("imul", value=value)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("imul", value=value)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__imul__(info.value)
+        val = super().__imul__(context.value)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __setitem__(self, index, value):
-        info = self.__get_info("setitem", index=index,
+        context = self.__get_context("setitem", index=index,
                                value=value)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__setitem__(info.index, info.value)
+        val = super().__setitem__(context.index, context.value)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
-    def __get_info(self, operation, **kwargs):
-        return Info(self, "list", operation, **kwargs)
+    def __get_context(self, operation, **kwargs):
+        return Context(self, "list", operation, **kwargs)
 
-    def __run_probe(self, info):
+    def __run_probe(self, context):
         if self.__probe:
-            info = self.__probe(info)
-        return info
+            context = self.__probe(context)
+        return context
 
-    def __run_on_change(self, info):
+    def __run_on_change(self, context):
         if self.__on_change:
-            self.__on_change(info)
+            self.__on_change(context)
 
 
 class ProbedSet(set):
-
+    """Definition of the class to make probed sets"""
     def __init__(self, items=None, probe=None,
                  on_change=None):
         """
+        Init.
+
+        [parameters]
         - items: default value of the collection
 
         - probe: callback called whenever the content of the collection
         is going to change.
-        It should accept as argument an instance of probed.Info.
-        It should return the same instance (edited or not) of probed.Info
+        It should accept as argument an instance of probed.Context.
+        It should return the same instance (edited or not) of probed.Context
         it got as argument, or return None to cancel the change operation.
 
         - on_change: callback called whenever the content of the collection changes.
-        It should accept as argument an instance of probed.Info.
+        It should accept as argument an instance of probed.Context.
 
         """
         super().__init__(items if items else ())
@@ -385,134 +394,134 @@ class ProbedSet(set):
         self.__changed = val
 
     def add(self, item):
-        info = self.__get_info("add", item=item)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("add", item=item)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().add(info.item)
+        val = super().add(context.item)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def clear(self):
-        info = self.__get_info("clear")
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("clear")
+        context = self.__run_probe(context)
+        if not context:
             return
         val = super().clear()
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def difference_update(self, *others):
-        info = self.__get_info("difference_update", others=others)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("difference_update", others=others)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().difference_update(*info.others)
+        val = super().difference_update(*context.others)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def discard(self, item):
-        info = self.__get_info("discard", item=item)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("discard", item=item)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().discard(info.item)
+        val = super().discard(context.item)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def intersection_update(self, *others):
-        info = self.__get_info("intersection_update", others=others)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("intersection_update", others=others)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().intersection_update(*info.others)
+        val = super().intersection_update(*context.others)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def pop(self):
-        info = self.__get_info("pop")
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("pop")
+        context = self.__run_probe(context)
+        if not context:
             return
         val = super().pop()
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def remove(self, item):
-        info = self.__get_info("remove", item=item)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("remove", item=item)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().remove(info.item)
+        val = super().remove(context.item)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def symmetric_difference_update(self, other):
-        info = self.__get_info("symmetric_difference_update",
+        context = self.__get_context("symmetric_difference_update",
                                other=other)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().symmetric_difference_update(info.other)
+        val = super().symmetric_difference_update(context.other)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def update(self, *others):
-        info = self.__get_info("update", others=others)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("update", others=others)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().update(*info.others)
+        val = super().update(*context.others)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __iand__(self, *others):
-        info = self.__get_info("iand", others=others)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("iand", others=others)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__iand__(*info.others)
+        val = super().__iand__(*context.others)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __ior__(self, *others):
-        info = self.__get_info("ior", others=others)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("ior", others=others)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__ior__(*info.others)
+        val = super().__ior__(*context.others)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __isub__(self, *others):
-        info = self.__get_info("isub", others=others)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("isub", others=others)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__isub__(*info.others)
+        val = super().__isub__(*context.others)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __ixor__(self, other):
-        info = self.__get_info("ixor", other=other)
-        info = self.__run_probe(info)
-        if not info:
+        context = self.__get_context("ixor", other=other)
+        context = self.__run_probe(context)
+        if not context:
             return
-        val = super().__ixor__(info.other)
+        val = super().__ixor__(context.other)
         self.__changed = True
-        self.__run_on_change(info)
+        self.__run_on_change(context)
         return val
 
     def __repr__(self):
@@ -523,20 +532,20 @@ class ProbedSet(set):
             val = val.lstrip(a).rstrip(b)
         return val
 
-    def __get_info(self, operation, **kwargs):
-        return Info(self, "set", operation, **kwargs)
+    def __get_context(self, operation, **kwargs):
+        return Context(self, "set", operation, **kwargs)
 
-    def __run_probe(self, info):
+    def __run_probe(self, context):
         if self.__probe:
-            info = self.__probe(info)
-        return info
+            context = self.__probe(context)
+        return context
 
-    def __run_on_change(self, info):
+    def __run_on_change(self, context):
         if self.__on_change:
-            self.__on_change(info)
+            self.__on_change(context)
 
 
-class Info:
+class Context:
     """
     This class contains data that describe a change event.
     Three attributes are always available:
@@ -564,17 +573,25 @@ class Info:
 
     Illustration:
 
-    def on_change(info):
-        info.container # 'dict'
-        info.collection # the actual plist object
-        info.operation # 'append'
-        info.value # 'hello'
+    def on_change(context):
+        context.container # 'dict'
+        context.collection # the actual plist object
+        context.operation # 'append'
+        context.value # 'hello'
 
     plist = probed.ProbedList(on_change=on_change)
     plist.append("hello") # the name of the parameter of this operation is 'value'
     """
     def __init__(self, collection, container, operation,
                  **kwargs):
+        """
+        Init
+
+        [parameters]
+        - collection: the collection object
+        - container: str, the type of container ("dict", "set", "list")
+        - operation: str, the type of operation. Example: "pop", "remove", "append".
+        """
         self._collection = collection
         self._container = container
         self._operation = operation
