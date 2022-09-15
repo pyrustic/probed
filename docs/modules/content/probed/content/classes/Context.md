@@ -52,7 +52,7 @@ plist.append("hello") # the name of the parameter of this operation is 'value'
 object
 
 ## Class Attributes
-
+No class attributes.
 
 ## Class Properties
 |Property|Type|Description|Inherited from|
@@ -84,7 +84,7 @@ Init
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 

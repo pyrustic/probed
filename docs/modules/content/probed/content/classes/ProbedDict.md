@@ -19,7 +19,7 @@ Definition of the class to make probed dicts
 dict
 
 ## Class Attributes
-
+No class attributes.
 
 ## Class Properties
 |Property|Type|Description|Inherited from|
@@ -34,71 +34,7 @@ dict
 
 
 # All Methods
-[\_probeddict\_\_get\_context](#_ProbedDict__get_context) &nbsp;&nbsp; [\_probeddict\_\_merge\_update\_other\_kwargs](#_ProbedDict__merge_update_other_kwargs) &nbsp;&nbsp; [\_probeddict\_\_run\_on\_change](#_ProbedDict__run_on_change) &nbsp;&nbsp; [\_probeddict\_\_run\_probe](#_ProbedDict__run_probe) &nbsp;&nbsp; [\_\_init\_\_](#__init__) &nbsp;&nbsp; [clear](#clear) &nbsp;&nbsp; [fromkeys](#fromkeys) &nbsp;&nbsp; [get](#get) &nbsp;&nbsp; [pop](#pop) &nbsp;&nbsp; [popitem](#popitem) &nbsp;&nbsp; [setdefault](#setdefault) &nbsp;&nbsp; [update](#update)
-
-## \_ProbedDict\_\_get\_context
-None
-
-
-
-**Signature:** (self, operation, \*\*kwargs)
-
-
-
-
-
-**Return Value:** None.
-
-[Back to Top](#module-overview)
-
-
-## \_ProbedDict\_\_merge\_update\_other\_kwargs
-None
-
-
-
-**Signature:** (self, other, \*\*kwargs)
-
-
-
-
-
-**Return Value:** None.
-
-[Back to Top](#module-overview)
-
-
-## \_ProbedDict\_\_run\_on\_change
-None
-
-
-
-**Signature:** (self, context)
-
-
-
-
-
-**Return Value:** None.
-
-[Back to Top](#module-overview)
-
-
-## \_ProbedDict\_\_run\_probe
-None
-
-
-
-**Signature:** (self, context)
-
-
-
-
-
-**Return Value:** None.
-
-[Back to Top](#module-overview)
-
+[\_\_init\_\_](#__init__) &nbsp;&nbsp; [clear](#clear) &nbsp;&nbsp; [fromkeys](#fromkeys) &nbsp;&nbsp; [get](#get) &nbsp;&nbsp; [pop](#pop) &nbsp;&nbsp; [popitem](#popitem) &nbsp;&nbsp; [setdefault](#setdefault) &nbsp;&nbsp; [update](#update) &nbsp;&nbsp; [\_probeddict\_\_get\_context](#_ProbedDict__get_context) &nbsp;&nbsp; [\_probeddict\_\_merge\_update\_other\_kwargs](#_ProbedDict__merge_update_other_kwargs) &nbsp;&nbsp; [\_probeddict\_\_run\_on\_change](#_ProbedDict__run_on_change) &nbsp;&nbsp; [\_probeddict\_\_run\_probe](#_ProbedDict__run_probe)
 
 ## \_\_init\_\_
 Init.
@@ -118,7 +54,7 @@ Init.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -134,7 +70,7 @@ D.clear() -> None.  Remove all items from D.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -150,7 +86,7 @@ Create a new dictionary with keys from iterable and values set to value.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -166,7 +102,7 @@ Return the value for key if key is in the dictionary, else default.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -183,7 +119,7 @@ If key is not found, d is returned if given, otherwise KeyError is raised
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -202,7 +138,7 @@ Raises KeyError if the dict is empty.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -220,7 +156,7 @@ Return the value for key if key is in the dictionary, else default.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -239,7 +175,71 @@ In either case, this is followed by: for k in F:  D[k] = F[k]
 
 
 
-**Return Value:** None.
+**Return Value:** None
+
+[Back to Top](#module-overview)
+
+
+## \_ProbedDict\_\_get\_context
+No description
+
+
+
+**Signature:** (self, operation, \*\*kwargs)
+
+
+
+
+
+**Return Value:** None
+
+[Back to Top](#module-overview)
+
+
+## \_ProbedDict\_\_merge\_update\_other\_kwargs
+No description
+
+
+
+**Signature:** (self, other, \*\*kwargs)
+
+
+
+
+
+**Return Value:** None
+
+[Back to Top](#module-overview)
+
+
+## \_ProbedDict\_\_run\_on\_change
+No description
+
+
+
+**Signature:** (self, context)
+
+
+
+
+
+**Return Value:** None
+
+[Back to Top](#module-overview)
+
+
+## \_ProbedDict\_\_run\_probe
+No description
+
+
+
+**Signature:** (self, context)
+
+
+
+
+
+**Return Value:** None
 
 [Back to Top](#module-overview)
 

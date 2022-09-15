@@ -19,7 +19,7 @@ Definition of the class to make probed sets
 set
 
 ## Class Attributes
-
+No class attributes.
 
 ## Class Properties
 |Property|Type|Description|Inherited from|
@@ -34,55 +34,7 @@ set
 
 
 # All Methods
-[\_probedset\_\_get\_context](#_ProbedSet__get_context) &nbsp;&nbsp; [\_probedset\_\_run\_on\_change](#_ProbedSet__run_on_change) &nbsp;&nbsp; [\_probedset\_\_run\_probe](#_ProbedSet__run_probe) &nbsp;&nbsp; [\_\_init\_\_](#__init__) &nbsp;&nbsp; [add](#add) &nbsp;&nbsp; [clear](#clear) &nbsp;&nbsp; [difference\_update](#difference_update) &nbsp;&nbsp; [discard](#discard) &nbsp;&nbsp; [intersection\_update](#intersection_update) &nbsp;&nbsp; [pop](#pop) &nbsp;&nbsp; [remove](#remove) &nbsp;&nbsp; [symmetric\_difference\_update](#symmetric_difference_update) &nbsp;&nbsp; [update](#update)
-
-## \_ProbedSet\_\_get\_context
-None
-
-
-
-**Signature:** (self, operation, \*\*kwargs)
-
-
-
-
-
-**Return Value:** None.
-
-[Back to Top](#module-overview)
-
-
-## \_ProbedSet\_\_run\_on\_change
-None
-
-
-
-**Signature:** (self, context)
-
-
-
-
-
-**Return Value:** None.
-
-[Back to Top](#module-overview)
-
-
-## \_ProbedSet\_\_run\_probe
-None
-
-
-
-**Signature:** (self, context)
-
-
-
-
-
-**Return Value:** None.
-
-[Back to Top](#module-overview)
-
+[\_\_init\_\_](#__init__) &nbsp;&nbsp; [add](#add) &nbsp;&nbsp; [clear](#clear) &nbsp;&nbsp; [difference\_update](#difference_update) &nbsp;&nbsp; [discard](#discard) &nbsp;&nbsp; [intersection\_update](#intersection_update) &nbsp;&nbsp; [pop](#pop) &nbsp;&nbsp; [remove](#remove) &nbsp;&nbsp; [symmetric\_difference\_update](#symmetric_difference_update) &nbsp;&nbsp; [update](#update) &nbsp;&nbsp; [\_probedset\_\_get\_context](#_ProbedSet__get_context) &nbsp;&nbsp; [\_probedset\_\_run\_on\_change](#_ProbedSet__run_on_change) &nbsp;&nbsp; [\_probedset\_\_run\_probe](#_ProbedSet__run_probe)
 
 ## \_\_init\_\_
 Init.
@@ -102,7 +54,7 @@ Init.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -120,7 +72,7 @@ This has no effect if the element is already present.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -136,7 +88,7 @@ Remove all elements from this set.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -152,7 +104,7 @@ Remove all elements of another set from this set.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -170,7 +122,7 @@ If the element is not a member, do nothing.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -186,7 +138,7 @@ Update a set with the intersection of itself and another.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -203,7 +155,7 @@ Raises KeyError if the set is empty.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -221,7 +173,7 @@ If the element is not a member, raise a KeyError.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -237,7 +189,7 @@ Update a set with the symmetric difference of itself and another.
 
 
 
-**Return Value:** None.
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
@@ -253,7 +205,55 @@ Update a set with the union of itself and others.
 
 
 
-**Return Value:** None.
+**Return Value:** None
+
+[Back to Top](#module-overview)
+
+
+## \_ProbedSet\_\_get\_context
+No description
+
+
+
+**Signature:** (self, operation, \*\*kwargs)
+
+
+
+
+
+**Return Value:** None
+
+[Back to Top](#module-overview)
+
+
+## \_ProbedSet\_\_run\_on\_change
+No description
+
+
+
+**Signature:** (self, context)
+
+
+
+
+
+**Return Value:** None
+
+[Back to Top](#module-overview)
+
+
+## \_ProbedSet\_\_run\_probe
+No description
+
+
+
+**Signature:** (self, context)
+
+
+
+
+
+**Return Value:** None
 
 [Back to Top](#module-overview)
 
